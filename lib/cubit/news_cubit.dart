@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:udemy1/cache/cache_helper.dart';
 
 import 'package:udemy1/cubit/news_state.dart';
 import 'package:udemy1/networks/dio_helper.dart';
@@ -92,8 +93,18 @@ class NewsCubit extends Cubit<NewsState> {
 
   bool isDark = false;
 
-  void changeAppMode() {
-    isDark = !isDark;
-    emit(AppChangeModeState());
+  void changeAppMode({bool? fromShared}) {
+    if (fromShared != null) {
+      isDark = fromShared;
+      print('${isDark.toString()}');
+      emit(AppChangeModeState());
+    } else {
+      isDark = !isDark;
+      CacheHelper.setBoolean(key: 'isDark', value: isDark).then((value) {
+        print('${isDark.toString()}');
+        print('${fromShared.toString()}');
+        emit(AppChangeModeState());
+      });
+    }
   }
 }
