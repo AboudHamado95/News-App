@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 
-Widget buildArticleItem(article) => Padding(
+Widget buildArticleItem(context,article) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
@@ -11,7 +11,7 @@ Widget buildArticleItem(article) => Padding(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               image: DecorationImage(
-                  image: NetworkImage('${article['urlToImage']??''}'),
+                  image: NetworkImage('${article['urlToImage'] ?? ''}'),
                   fit: BoxFit.cover),
             ),
           ),
@@ -28,8 +28,7 @@ Widget buildArticleItem(article) => Padding(
                   Expanded(
                     child: Text(
                       '${article['title']}',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.bodyText1,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -59,7 +58,7 @@ Widget articleBuilder(context, list) => Conditional.single(
     conditionBuilder: (context) => list.length > 0,
     widgetBuilder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) => buildArticleItem(list[index]),
+        itemBuilder: (context, index) => buildArticleItem(context,list[index]),
         separatorBuilder: (context, index) => myDivider(),
         itemCount: list.length),
     fallbackBuilder: (context) => Center(child: CircularProgressIndicator()));

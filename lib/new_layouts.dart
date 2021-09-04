@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:udemy1/cubit/news_cubit.dart';
 import 'package:udemy1/cubit/news_state.dart';
-import 'package:udemy1/networks/dio_helper.dart';
 
 class NewLayout extends StatelessWidget {
   const NewLayout({Key? key}) : super(key: key);
@@ -25,16 +24,16 @@ class NewLayout extends StatelessWidget {
                 IconButton(
                   onPressed: () {},
                   icon: Icon(Icons.search),
-                )
+                ),
+                IconButton(
+                  icon: Icon(Icons.brightness_4_outlined),
+                  onPressed: () {
+                    NewsCubit.get(context).changeAppMode();
+                  },
+                ),
               ],
             ),
             body: _cubit.screens[_cubit.currentIndex],
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                _cubit.getBusiness();
-              },
-              child: Icon(Icons.add),
-            ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: _cubit.currentIndex,
               onTap: (index) => _cubit.changeBottomNanBar(index),
