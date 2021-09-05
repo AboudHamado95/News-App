@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 
-Widget buildArticleItem(context,article) => Padding(
+Widget buildArticleItem(context, article) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
@@ -58,7 +58,16 @@ Widget articleBuilder(context, list) => Conditional.single(
     conditionBuilder: (context) => list.length > 0,
     widgetBuilder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) => buildArticleItem(context,list[index]),
+        itemBuilder: (context, index) => buildArticleItem(context, list[index]),
         separatorBuilder: (context, index) => myDivider(),
         itemCount: list.length),
     fallbackBuilder: (context) => Center(child: CircularProgressIndicator()));
+
+void navigateTo(context, widget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) {
+      return widget;
+    }),
+  );
+}
