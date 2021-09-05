@@ -52,7 +52,7 @@ Widget buildArticleItem(context, article) => InkWell(
     );
 
 Widget myDivider() => Padding(
-      padding: EdgeInsetsDirectional.only(start: 2.0),
+      padding: EdgeInsetsDirectional.only(start: 20.0),
       child: Container(
         width: double.infinity,
         height: 1.0,
