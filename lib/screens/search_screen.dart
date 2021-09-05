@@ -49,7 +49,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
+              Expanded( 
                   child: articleBuilder(context, listCubit, isSearch: true))
             ],
           ),
