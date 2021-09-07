@@ -7,7 +7,6 @@ import 'package:udemy1/cubit/news_state.dart';
 import 'package:udemy1/networks/dio_helper.dart';
 import 'package:udemy1/screens/business_screen.dart';
 import 'package:udemy1/screens/science_screen.dart';
-import 'package:udemy1/screens/settings_screen.dart';
 import 'package:udemy1/screens/sports_screen.dart';
 
 class NewsCubit extends Cubit<NewsState> {
@@ -26,7 +25,6 @@ class NewsCubit extends Cubit<NewsState> {
     BusinessScreen(),
     SportsScreen(),
     ScienceScreen(),
-    SettingsScreen(),
   ];
 
   void changeBottomNanBar(int index) {
